@@ -1,0 +1,23 @@
+<div class="loginForm">
+    <%= form_for @user, url: users_register_path, method: :post do |f| %>
+        <fieldset>
+            <legend>User Registration</legend>
+            <%= f.label "email_addr", "Email Address *" %>
+            <%= f.text_field "email_addr" %>
+            <%= f.label "registration_password", "Password *" %>
+            <%= f.password_field "registration_password" %>
+            <%= f.label "registration_password_repeat", "Repeat Password *" %>
+            <%= f.password_field "registration_password_repeat" %>
+            <%= f.label "first_name", "First Name *" %>
+            <%= f.text_field "first_name" %>
+            <%= f.label "last_name", "Last Name *" %>
+            <%= f.text_field "last_name" %>
+            <%= f.label "phone", "Phone Number *" %>
+            <%= f.text_field "phone" %>
+        </fieldset>
+        <div style="float:right;">
+            <%= f.submit "Register" %>
+        </div>
+        <div style="clear:both;"></div>
+    <% end %>
+</div>

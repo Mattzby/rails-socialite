@@ -1,0 +1,19 @@
+<div class="loginForm">
+    <%= form_for @host, url: hosts_register_path, method: :post do |f| %>
+        <fieldset>
+            <legend>Host Registration</legend>
+            <%= f.label "email_addr", "Email Address *" %>
+            <%= f.text_field "email_addr" %>
+            <%= f.label "registration_password", "Password *" %>
+            <%= f.password_field "registration_password" %>
+            <%= f.label "registration_password_repeat", "Repeat Password *" %>
+            <%= f.password_field "registration_password_repeat" %>
+            <%= f.label "business_name", "Business Name *" %>
+            <%= f.text_field "business_name" %>
+        </fieldset>
+        <div style="float:right;">
+            <%= f.submit "Register" %>
+        </div>
+        <div style="clear:both;"></div>
+    <% end %>
+</div>

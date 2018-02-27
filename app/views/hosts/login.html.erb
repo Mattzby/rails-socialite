@@ -1,0 +1,18 @@
+<div class="loginForm">
+    <h2>Host Log In</h2>
+    <%= form_tag hosts_login_path, method: :post do %>
+      <%= label_tag "email_addr", "Email Address" %>
+      <%= text_field_tag "email_addr" %>
+      <%= label_tag "passwd", "Password" %>
+      <%= password_field_tag "passwd" %>
+      <%= submit_tag "Login" %>
+    <% end %>
+</div>
+<br/>
+<div class="loginForm">
+    <p>Don't have a socialite account?</p>
+    <br/>
+    <%= link_to "Register Now", hosts_register_path %>
+    <br/>
+    <%= link_to "Login as a user", users_login_path %>
+</div>

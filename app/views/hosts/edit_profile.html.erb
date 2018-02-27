@@ -1,0 +1,15 @@
+<div class="hosts form">
+    <%= form_for @host, url: hosts_edit_profile_path, method: :post do |f| %>
+        <fieldset>
+            <legend>Host Registration</legend>
+            <%= f.label "email_addr", "Email Address *" %>
+            <%= f.text_field "email_addr" %>
+            <%= f.label "business_name", "Business Name *" %>
+            <%= f.text_field "business_name" %>
+        </fieldset>
+        <div style="float:right;">
+            <%= f.submit "Update" %>
+        </div>
+        <div style="clear:both;"></div>
+    <% end %>
+</div>

@@ -1,0 +1,29 @@
+<div class="users form">
+    <%= form_for @user, url: users_edit_profile_path, method: :post do |f| %>
+        <fieldset>
+            <legend>User Registration</legend>
+            <%= f.label "email_addr", "Email Address *" %>
+            <%= f.text_field "email_addr" %>
+            <%= f.label "first_name", "First Name *" %>
+            <%= f.text_field "first_name" %>
+            <%= f.label "last_name", "Last Name *" %>
+            <%= f.text_field "last_name" %>
+            <%= f.label "phone", "Phone Number *" %>
+            <%= f.text_field "phone" %>
+            <%= f.label "addr1", "Address 1" %>
+            <%= f.text_field "addr1" %>
+            <%= f.label "addr2", "Address 2" %>
+            <%= f.text_field "addr2" %>
+            <%= f.label "city", "City" %>
+            <%= f.text_field "city" %>
+            <%= f.label "state", "State" %>
+            <%= f.text_field "state" %>
+            <%= f.label "zip", "Zip" %>
+            <%= f.text_field "zip" %>
+        </fieldset>
+        <div style="float:right;">
+            <%= f.submit "Update" %>
+        </div>
+        <div style="clear:both;"></div>
+    <% end %>
+</div>

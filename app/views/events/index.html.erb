@@ -1,0 +1,48 @@
+<div class="events index">
+    <% if @event_time == 'upcoming' %>
+        <h2><%= @account_type == 'host' ? 'My Upcoming Events' : 'Upcoming Events' %></h2>
+    <% else %>
+        <h2><%= @account_type == 'host' ? 'My Past Events' : 'Past Events' %></h2>
+    <% end %>
+    <table>
+        <tr>
+            <% if @account_type == 'host' %>
+                <td class="actions" width="60">
+                    <%= link_to "Add Event", events_add_path %>
+                </td>
+            <% end %>
+            <td class="actions">
+                <%= link_to "Upcoming", events_index_path('upcoming') %>
+                <%= link_to "Past", events_index_path('past') %>
+            </td>
+        </tr>
+    </table>
+
+    <% if !@events.blank? %>
+        <% @events.each do |event| %>
+            <h3><%= event.event_name %></h3>
+            <div class="event_listing">
+                <div class="event_listing_left">
+                    <%= image_tag "default_event.jpg", width: "90" %>
+                </div>
+                <div class="event_listing_right">
+                    <p><span class="small_title">Location: </span><%= "#{event.venue_addr1}, #{event.venue_city}, #{event.venue_state} #{event.venue_zip}" %></p>
+                    <p><span class="small_title">Start Time: </span><%= event.event_start %></p>
+                    <p><span class="small_title">End Time: </span><%= event.event_end %></p>
+                    <p><span class="small_title">Details: </span><%= event.description %></p>
+                    <% if @account_type == 'host' %>
+                        <p><span class="small_title">Type: </span><%= event.event_type %></p>
+                    <% end %>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        <% end %>
+    <% else %>
+        <% if @event_time == 'upcoming' %>
+            <h3>You have no upcoming events in this section</h3>
+        <% else %>
+            <h3>You have no past events in this section</h3>
+        <% end %>
+    <% end %>
+</div>
+

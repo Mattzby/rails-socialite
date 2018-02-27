@@ -1,0 +1,37 @@
+<div class="events form">
+    <%= form_for @event, url: events_add_path, method: :post do |f| %>
+        <fieldset>
+            <legend>Add Event</legend>
+            <%= f.label "event_name", "Event Name *" %>
+            <%= f.text_field "event_name" %>
+            <%= f.label "description", "Description" %>
+            <%= f.text_area "description" %>
+            <%= f.label "capacity", "Capacity *" %>
+            <%= f.text_field "capacity" %>
+            <%= f.label "event_start", "Event Start *" %>
+            <%= f.datetime_field "event_start" %>
+            <%= f.label "event_end", "Event End *" %>
+            <%= f.datetime_field "event_end" %>
+            <%= f.label "rsvp_start", "RSVP Start *" %>
+            <%= f.datetime_field "rsvp_start" %>
+            <%= f.label "rsvp_end", "RSVP End *" %>
+            <%= f.datetime_field "rsvp_end" %>
+            <%= f.label "event_type", "Event Type *" %>
+            <%= f.select "event_type", options_for_select(Event.event_types.inject({}){ |het, et| het.merge( et.first.capitalize => et.first )}), { style: 'width: 100%;' } %>
+            <%= f.label "venue_addr1", "Venue Address 1 *" %>
+            <%= f.text_field "venue_addr1" %>
+            <%= f.label "venue_addr2", "Venue Address 2" %>
+            <%= f.text_field "venue_addr2" %>
+            <%= f.label "venue_city", "Venue City *" %>
+            <%= f.text_field "venue_city" %>
+            <%= f.label "venue_state", "Venue State *" %>
+            <%= f.text_field "venue_state" %>
+            <%= f.label "venue_zip", "Venue Zip *" %>
+            <%= f.text_field "venue_zip" %>
+        </fieldset>
+        <div style="float:right;">
+            <%= f.submit "Add" %>
+        </div>
+        <div style="clear:both;"></div>
+    <% end %>
+</div>
