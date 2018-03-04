@@ -1,5 +1,8 @@
 class User < ApplicationRecord
 
+  has_many :rsvps
+  has_many :events, through: :rsvps
+
   attr_accessor :registration_password, :registration_password_repeat
 
   validates :email_addr, :passwd, :first_name, :last_name, :phone, presence: true
@@ -13,6 +16,10 @@ class User < ApplicationRecord
     end
     
     self.passwd = Digest::SHA256.hexdigest registration_password
+  end
+
+  def self.search_by_name(search)
+    where("first_name LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%") 
   end
 
 end

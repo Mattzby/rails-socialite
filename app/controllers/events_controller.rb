@@ -17,9 +17,10 @@ class EventsController < ApplicationController
       end
     else
       if @event_time == 'upcoming'
-        Event.get_upcoming_public_events
+        #Add invite events to public events for users
+        Event.get_upcoming_public_events + Event.get_upcoming_invite_events_for_user(@current_user.id)
       else
-        Event.get_past_public_events
+        Event.get_past_public_events + Event.get_past_invite_events_for_user(@current_user.id)
       end
     end
   end

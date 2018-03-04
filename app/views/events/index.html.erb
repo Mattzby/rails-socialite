@@ -32,6 +32,20 @@
                     <p><span class="small_title">Details: </span><%= event.description %></p>
                     <% if @account_type == 'host' %>
                         <p><span class="small_title">Type: </span><%= event.event_type %></p>
+                        <div class="event_listing_actions">
+                        <% if event.event_type == 'invite' and @event_time =='upcoming' %>
+                            <%= link_to "Invite", rsvps_add_path(event.id) %>
+                        <% end %>
+                        <%= link_to "Export RSVP List", rsvps_export_path(event.id, :format => "csv") %>
+                        </div>
+                    <% else %>
+                        <div class="event_listing_actions">
+                        <% if @event_time =='upcoming' and event.rsvp_start < Time.now and event.rsvp_end > Time.now and calculate_free_capacity_for_event(event) > 0 %>
+                            <%= link_to "RSVP", rsvps_confirm_path(event.id) %>
+                        <% elsif @event_time =='upcoming' and event.rsvp_start < Time.now and event.rsvp_end > Time.now and calculate_free_capacity_for_event(event) <= 0 %>
+                            <p><span class="notification">Event Full</span></p>
+                        <% end %>
+                        </div>
                     <% end %>
                 </div>
                 <div style="clear:both;"></div>

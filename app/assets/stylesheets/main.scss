@@ -195,6 +195,11 @@ a:hover, a:active {
     color: #333;
 }
 
+.event_listing span.notification {
+    font-weight: bold;
+    color: #e32;
+}
+
 .event_listing_left {
     float:left;
     margin-right: 20px;
@@ -213,6 +218,29 @@ a:hover, a:active {
 .event_listing_right {
     float: left;
 }
+
+.event_listing_actions a {
+    font-weight:normal;
+    padding: 4px 8px;
+    display:inline-block;
+    background:#e6e49f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f1f1d4), to(#e6e49f));
+    background-image: -moz-linear-gradient(top, #f1f1d4, #e6e49f);
+    color:#333;
+    border:1px solid #aaac62;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
+    border-radius:8px;
+    text-decoration:none;
+    text-shadow: #fff 0px 1px 0px;
+    min-width: 0;
+}
+
+.event_listing_actions a:hover {
+    background: #f0f09a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f7f7e1), to(#eeeca9));    
+    text-decoration: underline;
+} 
 
 .event_listing_detail {
     float: right;

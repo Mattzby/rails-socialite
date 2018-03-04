@@ -1,0 +1,21 @@
+<div class="events index">
+<h2>My Agenda</h2>
+<% if !@rsvps.blank? %>
+	<table>
+	    <tr>
+	        <th>Event Start Date</th>
+	        <th>Event Name</th>
+	        <th>Event Location</th>
+	    </tr>
+	    <% @rsvps.each do |rsvp| %>
+	        <tr>
+	            <td><%= rsvp.event.event_start.strftime("%b #{rsvp.event.event_start.day.ordinalize}, %Y %I:%M%P") %></td>
+	            <td><%= rsvp.event.event_name %></td>
+	            <td><%= "#{rsvp.event.venue_addr1}, #{rsvp.event.venue_city}, #{rsvp.event.venue_state} #{rsvp.event.venue_zip}" %></td>
+	        </tr> 
+	    <% end %>
+	</table>
+<% else %>
+	<p>You have not RSVP'd to any upcoming events</p>
+<% end %>
+</div>

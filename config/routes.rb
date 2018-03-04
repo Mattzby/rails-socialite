@@ -24,4 +24,12 @@ Rails.application.routes.draw do
   get '/users/edit_profile' => 'users#edit_profile', as: :users_edit_profile
   post '/users/edit_profile' => 'users#edit_profile', as: :users_edit_profile_post
   get '/users/logout' => 'users#logout', as: :users_logout
+
+  get '/rsvps' => 'rsvps#index', as: :rsvps_index
+  get '/rsvps/:event_id' => 'rsvps#export', as: :rsvps_export
+  get '/rsvps/add/:event_id' => 'rsvps#add', as: :rsvps_add
+  post '/rsvps/add/:event_id/:user_id' => 'rsvps#add', as: :rsvps_add_post
+  get '/rsvps/confirm/:event_id' => 'rsvps#confirm', as: :rsvps_confirm
+  post '/rsvps/confirm/:event_id' => 'rsvps#confirm', as: :rsvps_confirm_post
+
 end

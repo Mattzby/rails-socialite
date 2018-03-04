@@ -1,0 +1,16 @@
+<div class="rsvps form">
+    <%= form_for @rsvp, url: rsvps_confirm_post_path, method: :post do |f| %>
+        <fieldset>
+            <legend>RSVP to <%= @event.event_name %></legend>
+            <p><span>Available Capacity: <%= calculate_free_capacity_for_event(@event) %></span></p>
+            <%= f.label "rsvp_status", "RSVP? *" %>
+            <%= f.select "rsvp_status", options_for_select(Rsvp.rsvp_statuses.inject({}){ |het, et| het.merge( et.first.capitalize => et.first )}, f.object.rsvp_status)%>
+            <%= f.label "guests", "Additional Guests *" %>
+            <%= f.text_field "guests" %>
+        </fieldset>
+        <div style="float:right;">
+            <%= f.submit "Submit" %>
+        </div>
+        <div style="clear:both;"></div>
+    <% end %>
+</div>

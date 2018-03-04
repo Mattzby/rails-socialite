@@ -1,0 +1,36 @@
+<div class="rsvps form">
+    <h2>Invite Users to "<%= @event.event_name %>"</h2>
+
+<%= form_tag(rsvps_add_path(@event.id), :method => "get", id: "search-form") do %>
+    <%= text_field_tag :search, params[:search], placeholder: "Enter User Name" %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<% if !@users.blank? %>
+    <div class="user_search_results">
+        <table>
+            <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            <% @users.each do |user| %>
+                <tr>
+                    <% if is_user_invited_to_event(@event.id,user.id) %>
+                        <td>Invite Sent</td>
+                    <% else %>
+                        <td><%= button_to "Invite", rsvps_add_post_path(@event.id, user.id), :method => :post %>
+                    <% end %>
+                    <td><%= user.first_name %></td>
+                    <td><%= user.last_name %></td>
+                </tr> 
+            <% end %>
+        </table>
+    </div>
+<% end %>
+
+<% if @users.blank? %>
+  <h3>There are no users containing the term "<%= params[:search] %>".</h3>
+<% end %>
+
+</div>

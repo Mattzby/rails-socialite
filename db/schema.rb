@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128192036) do
+ActiveRecord::Schema.define(version: 20180228151152) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "host_id", null: false
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(version: 20180128192036) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rsvps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
+    t.integer "rsvp_status", limit: 1
+    t.integer "guests", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id", "user_id"], name: "index_rsvps_on_event_id_and_user_id", unique: true
+    t.index ["event_id"], name: "index_rsvps_on_event_id"
+    t.index ["user_id"], name: "index_rsvps_on_user_id"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
@@ -55,4 +67,6 @@ ActiveRecord::Schema.define(version: 20180128192036) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "rsvps", "events"
+  add_foreign_key "rsvps", "users"
 end
