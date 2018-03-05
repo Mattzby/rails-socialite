@@ -17,10 +17,10 @@ class EventsController < ApplicationController
       end
     else
       if @event_time == 'upcoming'
-        #Add invite events to public events for users
-        Event.get_upcoming_public_events + Event.get_upcoming_invite_events_for_user(@current_user.id)
+        #Add invite events to public events for users and sort by start date
+        (Event.get_upcoming_public_events + Event.get_upcoming_invite_events_for_user(@current_user.id)).sort_by {|event| event.event_start}
       else
-        Event.get_past_public_events + Event.get_past_invite_events_for_user(@current_user.id)
+        (Event.get_past_public_events + Event.get_past_invite_events_for_user(@current_user.id)).sort_by {|event| event.event_start}
       end
     end
   end

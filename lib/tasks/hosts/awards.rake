@@ -6,6 +6,8 @@ namespace :hosts do
 		args.with_defaults(year: Time.now.year)
 		Dir.mkdir("csv") unless File.exists?("csv")
 
+		headers = %w{business_name positive_rsvps}
+
 	  #Active Record Method
 	  records = Rsvp.select(
 					  [
@@ -26,6 +28,7 @@ namespace :hosts do
 					).order('positive_rsvps').reverse_order.group(:business_name).limit(5)
 
 		CSV.open("csv/arel-host-awards-#{args[:year]}.csv","w") do |csv|
+		  csv << headers
 	  	records.each do |record|
 				csv << [record.business_name, record.positive_rsvps]
 			end
@@ -43,6 +46,7 @@ namespace :hosts do
 		records_array = ActiveRecord::Base.connection.execute(sql)
 
 		CSV.open("csv/sql-host-awards-#{args[:year]}.csv","w") do |csv|
+		  csv << headers
 			records_array.each do |record|
 				csv << [record[0], record[1]]
 			end

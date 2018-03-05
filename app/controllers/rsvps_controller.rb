@@ -8,7 +8,6 @@ class RsvpsController < ApplicationController
 
   def add
     @event = Event.find_by(id: params[:event_id])
-    @rsvps = Rsvp.includes(:user).find_by(event_id: params[:event_id])
 
     if params[:search]
       #clean up whitespace, split on space or comma to allow for multiple names, search on each term
@@ -43,9 +42,7 @@ class RsvpsController < ApplicationController
         @rsvp.destroy
         redirect_to events_index_path
       else
-        @rsvp.rsvp_status = rsvp_params["rsvp_status"]
-        @rsvp.guests = rsvp_params["guests"]
-        if @rsvp.save
+        if @rsvp.update(rsvp_params)
           redirect_to events_index_path
         else
           flash[:error] = @rsvp.errors.full_messages.map { |v| v }.join('<br/>')
